@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: chefserver
+  labels:
+    name: chef
+    labels: chef-server
+
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: chef
+      labels: chef-server
+
+  template:
+    metadata:
+     name: chefserver
+     labels:
+       name: chef
+       labels: chef-server
+
+    spec:
+      containers:
+        - name: chefserver
+          image: chef/chefdk
+          ports:
+            -containerPort: 443
+
